@@ -238,7 +238,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                 random.shuffle(self.kodi_videos)
             self.log("found tv " + str(len(self.kodi_tvshows)))
                 
-    def scanFolder(self, path, reccursion=1):
+    def scanFolder(self, path):
         #Scan set folder for images with png and jpg extension
         self.log('scanFolder started with path: %s' % repr(path))
         dirs, files = xbmcvfs.listdir(path)
@@ -250,10 +250,10 @@ class Screensaver(xbmcgui.WindowXMLDialog):
             for directory in dirs:
                 if directory.startswith('.'):
                     continue
-                rec = reccursion + 1 
                 images.extend(
                     self.scanFolder(
-                        xbmc.validatePath(''.join((path, directory, '/'))), rec)
+                        xbmc.validatePath('/'.join((path, directory, '')))
+                    )
                 )
         self.log('scanFolder ends')
         return images
