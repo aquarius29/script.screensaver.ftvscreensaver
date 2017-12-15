@@ -252,7 +252,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                     continue
                 images.extend(
                     self.scanFolder(
-                        xbmc.validatePath('/'.join((path, directory, '')))
+                        xbmc.validatePath(''.join((path, directory, '/')))
                     )
                 )
         self.log('scanFolder ends')
